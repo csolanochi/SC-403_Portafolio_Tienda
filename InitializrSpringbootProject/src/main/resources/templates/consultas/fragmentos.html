@@ -63,7 +63,7 @@
     <div th:replace="~{consultas/fragmentos :: formConsulta('primary',#{consultas.derivadas},'/consultas/consultaDerivada')}"/>
     <div th:replace="~{consultas/fragmentos :: formConsulta('warning',#{consultas.jpql},'/consultas/consultaJPQL')}"/>
     <div th:replace="~{consultas/fragmentos :: formConsulta('success',#{consultas.sql},'/consultas/consultaSQL')}"/>
-    <div class='card'><p>Acá va su Práctica #2</p></div>
+   <div th:replace="~{consultas/fragmentos :: formConsultaTexto('danger',#{consultas.descripcion},'/consultas/consultaDescripcion')}"/>
 </section>
 
 <!-- fragmento 4 para mostrar el formulario factorizado -->
@@ -83,6 +83,28 @@
                     <label>[[#{consultas.precio.superior}]]</label>
                     <input type="number" name='precioSup' th:value='${precioSup}'
                            class='form-control' min="0" required/>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button type='submit' class='btn text-white' th:classappend="${'btn-'+colorForm}">
+                    <i class='fa-solid fa-magnifying-glass'></i> [[${textoForm}]]
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- fragmento 5 para mostrar el formulario de consulta por descripción -->
+<div th:fragment='formConsultaTexto(colorForm, textoForm, urlForm)'>
+    <form method="post" th:action='@{${urlForm}}' class='was-validated'>
+        <div class='card p-2'>
+            <div class="card-header text-center text-white" th:classappend="${'bg-'+colorForm}">
+                <h5>[[${textoForm}]]</h5>
+            </div>
+            <div class="card-body">
+                <div class='mb-3'>
+                    <label>[[#{consultas.descripcion.texto}]]</label>
+                    <input type="text" name='descripcion' th:value='${descripcion}'
+                           class='form-control' required/>
                 </div>
             </div>
             <div class="card-footer text-center">

@@ -80,5 +80,10 @@ public class ProductoService {
     public List<Producto> consultaSQL(double precioInf, double precioSup) {
         return productoRepository.consultaSQL(precioInf, precioSup);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Producto> consultaDescripcion(String descripcion) {
+        return productoRepository.consultaDescripcion(descripcion);
+    }
 
 }
